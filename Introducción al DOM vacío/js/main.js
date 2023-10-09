@@ -26,7 +26,7 @@ fila2.forEach(c => c.innerHTML=`<h2>${c.innerHTML}</h2>`);
             //opcion 2 using fila1
 const fila1=document.querySelector("#fila1");
 for (const celda of fila1.children) {
-    celda.innerHTML=`<h3>${celda.innerHTML}</h3>`;
+    celda.innerHTML=`<h4>${celda.innerHTML}</h4>`;
 }
 ////Cambiar texto de la última celda (id: f2c3), texto pedido al usuario.
 let txt=prompt("txt: ");
@@ -50,32 +50,27 @@ button.addEventListener('mousedown',boton_click);
 button.addEventListener('mouseup',boton_click2);
 //Restauración del título al hacer clic en el mismo.
 title.addEventListener('click',()=>title.innerHTML='Manejo del <span style="color:red">DOM</span>');
-////Añadir nuevos elementos HTML al final de un elemento existente (id: ultimaFila)
-let nuevoElemento=document.createElement('div');
-nuevoElemento.innerHTML="Ultimo"
-document.querySelector("body").append(nuevoElemento);
-//Crear una nueva fila div-row, con un elemento columna div-col (con bg-danger).
-const nuevaFila=document.createElement('div');
-nuevaFila.id="ultimaFila";
-nuevaFila.className="row";
-const nuevaColumna=document.createElement('div');
-nuevaColumna.className="col bg-danger";
-nuevaColumna.innerHTML="ultima fila";
-nuevaFila.append(nuevaColumna);
+////Añadir nuevos elementos HTML al final de un elemento existente 
+//Crear una nueva fila div-row (id: ultimaFila), con un elemento columna div-col (con bg-danger).
+const ultimaFila=document.createElement('div');
+ultimaFila.id="ultimaFila";
+ultimaFila.classList.add("row");
+const ultimaColumna=document.createElement('div');
+ultimaColumna.classList.add("col","bg-danger");
+ultimaColumna.innerText="danger";
+ultimaFila.append(ultimaColumna);
 //Añadir al final del contenedor (container || container-fluid)
-document.querySelector(".container-fluid").append(nuevaFila);
+document.querySelector(".container-fluid").append(ultimaFila);
+
 ////Añadir nuevo elemento HTML junto a un elemento existente (antes de ultimaFila)
-nuevoElemento=document.createElement('div');
-nuevoElemento.innerHTML="penultimo"
-nuevaFila.insertAdjacentElement("beforebegin",nuevoElemento)
 ////element.insertAdjacentElement(position, element); //beforbegin, afterbegin, beforeend, afterend
+
 //Crear una nueva fila div-row, con un elemento columna div-col (con bg-warning).
-const nuevaFila=document.createElement('div');
-nuevaFila.id="ultimaFila";
-nuevaFila.className="row";
-const nuevaColumna=document.createElement('div');
-nuevaColumna.className="col bg-warning";
-nuevaColumna.innerHTML="ultima fila";
-nuevaFila.append(nuevaColumna);
+const penultimaFila=document.createElement('div');
+penultimaFila.classList.add("row");
+const penultimaColumna=document.createElement('div');
+penultimaColumna.classList.add("col","bg-warning");
+penultimaColumna.innerText="warning"
+penultimaFila.append(penultimaColumna)
 //Añadir antes del div con id ultimaFila
-nuevaFila.insertAdjacentElement("beforebegin",nuevaColumna)
+document.querySelector("div#ultimaFila").insertAdjacentElement("beforebegin",penultimaFila)
