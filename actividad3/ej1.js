@@ -1,4 +1,4 @@
-//ej1
+//pide un numero mayor igual de 1.
 function pedirNumero(){
     let num=parseInt(prompt("Num(1..*): "));
     if (isNaN(num))
@@ -9,6 +9,7 @@ function pedirNumero(){
         return num;
     return pedirNumero()
 }
+//pide dos numero, obtiene la img, inner html y redimensionar la img.
 function click(){
     let num1=pedirNumero();
     let num2=pedirNumero();
@@ -19,14 +20,12 @@ function click(){
     img.src=(icons[(num1==num2?2:(num1>num2?0:1))]);
     img.height=50;
 }
+
+//lista de los iconos
 const icons=[
     "https://cdn.pixabay.com/photo/2016/03/31/14/37/check-mark-1292787_1280.png",
 "https://image.similarpng.com/very-thumbnail/2020/11/Red-incorrect-icon-design-on-transparent-background-PNG.png",
 "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Equal_icon.svg/48px-Equal_icon.svg.png?20190916112734"];
-
-let boton=document.querySelector("#ej1");
+//boton y su evento
+let boton=document.querySelector("button");
 boton.addEventListener("click",click);
-
-//ej2
-let boton2=document.querySelector("#ej2");
-boton2.addEventListener("click",click);
