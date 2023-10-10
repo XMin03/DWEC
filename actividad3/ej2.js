@@ -1,3 +1,5 @@
+//primera vez
+click();
 //pedir numeros y obtener la cantidad de numeros validas y total.
 function click(){
     let cont=0;
