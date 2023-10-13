@@ -9,15 +9,19 @@ function pedirNumero(){
         return num;
     return pedirNumero()
 }
-//pide dos numero, obtiene la img, inner html y redimensionar la img.
 function click(){
+    //pide dos numero
     let num1=pedirNumero();
     let num2=pedirNumero();
+    //obtiene la img
     let img=document.querySelector("img");
+
+    //inner html
     document.querySelector("div div:nth-child(1)").innerHTML=num1;
     document.querySelector("div div:nth-child(2)").innerHTML=num2;
     document.querySelector("div div:nth-child(3)").innerHTML=num1+" es mayor que "+num2;
     img.src=(icons[(num1==num2?2:(num1>num2?0:1))]);
+    //redimensionar la img
     img.height=50;
 }
 
