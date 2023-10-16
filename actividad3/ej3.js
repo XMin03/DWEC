@@ -13,7 +13,7 @@ function prepare() {
         //a cada img se añade un eventListener
         img.addEventListener("click",function click(){
             ////imprimir y eliminar la img del array(he leido de nuevo el enunciado y me he dado cuenta que no habia ningun segundo arreglo.)
-            console.log(imgs1.splice(img.src,1));
+            console.log(imgs1.splice(img.src,1)[0]);
             //cambia de fila
             row2.append(col);
             //quita el eventListener
@@ -27,7 +27,7 @@ function prepare() {
     let row2=document.createElement("div");
     row2.classList.add("row")
     //añade las filas en html.
-    document.querySelector("body").append(row,row2);
+    document.querySelector(".container-fluid").append(row,row2);
 }
 //lista de imgs
 let imgs1=[

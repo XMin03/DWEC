@@ -5,7 +5,7 @@ function click(){
     //crea la fila
     let row=document.createElement("div");
     row.classList.add("row");
-    document.querySelector("body").append(row);
+    document.querySelector(".container-fluid").append(row);
     //prepara lo necesario
     //en el enunciado no vi que pide la lista de numeros introducidos, pero un compi me ha dicho que si, entonces lo he puesto.
     let txt="Lista de numeros: ";
