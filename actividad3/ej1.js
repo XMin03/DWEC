@@ -17,9 +17,9 @@ function click(){
     let img=document.querySelector("img");
 
     //inner html
-    document.querySelector("div div div:nth-child(1)").innerHTML=num1;
-    document.querySelector("div div div:nth-child(2)").innerHTML=num2;
-    document.querySelector("div div div:nth-child(3)").innerHTML=num1+" es mayor que "+num2;
+    document.querySelector(".col:nth-child(1)").innerHTML=num1;
+    document.querySelector(".col:nth-child(2)").innerHTML=num2;
+    document.querySelector(".col:nth-child(3)").innerHTML=num1+" es mayor que "+num2;
     img.src=(icons[(num1==num2?2:(num1>num2?0:1))]);
     //redimensionar la img
     img.height=50;
