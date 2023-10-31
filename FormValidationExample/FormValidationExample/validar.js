@@ -56,13 +56,14 @@ formulario.setAttribute('novalidate',true)
 function validaNombre() {
     let b=false;
     nombreError.classList.add("active")
-    if (!nombre.validity.valid){
-        nombreError.innerHTML="El nombre no puede estar vacío";
+    if (!nombre.value.length>0){
+        nombre.setCustomValidity("El nombre es obligatorio");
     }else{
-        nombreError.innerHTML="";
+        nombre.setCustomValidity("");
         nombreError.classList.remove("active")
         b=true;
     }
+    nombreError.innerHTML=nombre.validationMessage;
     return b;
 }
 function validaEmail(){
@@ -80,12 +81,8 @@ function validaEmail(){
     emailError.innerHTML=email.validationMessage;
     return b;
 }
-/*
-function validaEdadHTML5(){
-    return true;
-}*/
 
-function validaEdadJS(){
+function validaEdadHTML5(){
     let b=false;
     edadError.classList.add("active")
     
@@ -102,19 +99,33 @@ function validaEdadJS(){
     }
     edadError.innerHTML=edad.validationMessage;
     return b;
+
+}
+
+function validaEdadJS(){
+    let b=false;
+    edadError.classList.add("active")
+    
+    if (edad.value.length==0){
+        edad.setCustomValidity("La edad es obligatoria");
+    }else if (edad.value>120) {
+        edad.setCustomValidity("La edad es demasiada cantidad");
+    }else if (edad.value<18) {
+        edad.setCustomValidity("Debe ser mayor de edad");
+    }else{
+        edad.setCustomValidity("");
+        b=true;
+        edadError.classList.remove("active")
+    }
+    edadError.innerHTML=edad.validationMessage;
+    return b;
 }
 
 function validaFormulario(event) {
     let b=true;
-    if (!validaNombre()) {
-        b=false;
-    }
-    if (!validaEmail()) {
-        b=false;
-    }
-    if (!validaEdadJS()) {
-        b=false;
-    }
+    b=validaNombre()&&b
+    b=validaEmail()&&b
+    b=validaEdadJS()&&b
     if (!b) {
         event.preventDefault();    
     }
