@@ -71,6 +71,8 @@ function validaEmail(){
     emailError.classList.add("active")
     if (email.validity.valueMissing){
         email.setCustomValidity("El email es obligatorio");
+    }else if(email.value.match(/@.*@/)){
+        email.setCustomValidity("más de una @ no es correcto")
     }else if (extraeDominio()!="gmail.com") {
         email.setCustomValidity("El dominio debe ser @gmail.com")
     }else{
