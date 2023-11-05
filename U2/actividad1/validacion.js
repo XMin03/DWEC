@@ -14,11 +14,10 @@ function validaEmail() {
     }
 }
 function validaTel() {
-    //el maxlength no funciona para numeros deberia poner maximo 1000000000000000
     if (tel.validity.valueMissing){
         tel.setCustomValidity("Introduce un telefono");
     }
-    else if (tel.value.length>=15){
+    else if (tel.validity.rangeOverflow){
         tel.setCustomValidity("Maximo 15numeros");
     }else{
         tel.setCustomValidity("");
