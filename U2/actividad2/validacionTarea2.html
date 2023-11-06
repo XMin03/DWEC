@@ -11,7 +11,6 @@
         padding: 1em;
         margin: 0;
       }
-
       * {
         box-sizing: border-box;
       }
@@ -25,19 +24,19 @@
       <ul>
         <li>
           <label for="uname">Nombre de usuario:</label>
-          <input type="text" name="uname" id="uname" minlength="5" maxlength="20">
+          <input type="text" name="uname" id="uname" required pattern="^[a-z]\.([a-z]|\d)([a-z]|\d)([a-z]|\d)+$">
         </li>
         <li>
           <label for="email">Email:</label>
-          <input type="email" name="email" id="email" required>
+          <input type="email" name="email" id="email" required pattern="^([A-Z]|[a-z]|\d)+@vegasoft.com$">
         </li>
         <li>
           <label for="phone">Teléfono:</label>
-          <input type="number" name="phone" id="phone" max="999999999999999" required>
+          <input type="text" name="phone" id="phone" pattern="^\d{10}$|(^(\d{3}[ \-\.]){2}\d{4}$)">
         </li>
         <li>
           <label for="comment">Comentario:</label>
-          <textarea name="comment" id="comment" maxlength="200" required>
+          <textarea name="comment" id="comment">
           </textarea>
         </li>
         <li>
