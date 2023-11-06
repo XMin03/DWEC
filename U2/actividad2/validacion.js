@@ -1,5 +1,5 @@
 function validaNombre() {
-    if (nombre.validity.valueMissing){
+    if (nombre.value.length==0){
         nombre.setCustomValidity("Campo requerido");
     }else if(nombre.value.length>20){
         nombre.setCustomValidity("Nombre demasiado largo");
@@ -14,7 +14,7 @@ function validaEmail() {
         email.setCustomValidity("Ese no es un email");
     }else{
         let dominio=email.value.substring(email.value.indexOf("@")+1)
-        if (email.validity.valueMissing){
+        if (email.value.length==0){
             email.setCustomValidity("Campo requerido");
         }else if (email.validity.patternMismatch){
             if (dominio!="vegasoft.com") {
