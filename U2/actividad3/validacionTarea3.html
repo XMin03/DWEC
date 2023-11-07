@@ -22,7 +22,7 @@
     <form>
       <label for="mail">I would like you to provide me with an e-mail address:</label>
       <!-- pattern que permite letras y numeros,despues de arroga permite guiones medio, y acaba con . y minimo 2letras(la direccion no distingue mayusculas minusculas) -->
-      <input type="email" id="mail" name="mail" minlength="10" pattern="^[a-zA-Z0-9]+@[a-zA-Z0-9]+((-[a-zA-Z0-9])+)?\.[a-zA-Z][a-zA-Z]+" required>
+      <input type="email" id="mail" name="mail" minlength="10" pattern="^[a-zA-Z0-9]+@[a-zA-Z0-9]+((-[a-zA-Z0-9])+)?\.[a-zA-Z]{2,}" required>
       <button>Submit</button>
     </form>
   </body>
