@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Form validation: Task 3</title>
+    <style>
+      body {
+        background-color: #fff;
+        color: #333;
+        font: 1em / 1.4 Helvetica Neue, Helvetica, Arial, sans-serif;
+        padding: 1em;
+        margin: 0;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+
+  <body>
+    <form>
+      <label for="mail">I would like you to provide me with an e-mail address:</label>
+      <!-- pattern que permite letras y numeros,despues de arroga permite guiones medio, y acaba con . y minimo 2letras(la direccion no distingue mayusculas minusculas) -->
+      <input type="email" id="mail" name="mail" minlength="10" pattern="^[a-zA-Z0-9]+@[a-zA-Z0-9]+((-[a-zA-Z0-9])+)?\.[a-zA-Z][a-zA-Z]+" required>
+      <button>Submit</button>
+    </form>
+  </body>
+  <script>
+    function validarEmail() {
+        if (email.validity.valueMissing) {
+          email.setCustomValidity("Campo Obligatorio")
+        }else if(email.validity.patternMismatch){
+          email.setCustomValidity("pattern Error")
+        }else if(email.validity.tooShort){
+          email.setCustomValidity("Minimo 10 caracteres")
+        }else{
+          email.setCustomValidity("")
+        }
+    }
+    const email = document.getElementById("mail");
+    email.addEventListener('input',validarEmail)
+    validarEmail();
+  </script>
+
+</html>
