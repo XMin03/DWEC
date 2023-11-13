@@ -5,14 +5,13 @@
  * 2S = Two of Spades
  */
 function barajaCompleta(){
-    const link="assets/cartas/"
     //obtiene el mazo compleato
     mazo=[];
     let numero=["A","2","3","4","5","6","7","8","9","10","J","Q","K"]
     let letra=["C","D","H","S"]
     for (let i = 0; i < numero.length; i++) {
         for (let j = 0; j < letra.length; j++) {
-            mazo.push(link+numero[i]+letra[j]+".png")
+            mazo.push(numero[i]+letra[j])
         }
     }
     barajar();
@@ -37,33 +36,53 @@ function newGame() {
 function sacar(){
     //aunque nunca va a pasar
     if (mazo.length!=0) {
+        const link="assets/cartas/"
         //obtiene la carta
         let carta=document.createElement("img");
         carta.classList.add("carta");
-        carta.src=mazo.shift();
-        zonaUsuario.append(carta);
-        //actualiza los puntos
-        let p=obtenerPunto(carta);
-        puntoUsuario.innerText=parseInt(puntoUsuario.innerText)+parseInt(p);
-        //boom
-        if (puntoUsuario.innerText>21) {
-            stop();
-        }
+        let c=mazo.shift();
+        carta.src=link+c+".png";
+        return carta;
     }else{
         alert("Mazo vacío")
     }
 }
+function sacarUsuario() {
+    let carta=sacar()
+    zonaUsuario.append(carta);
+    //actualiza los puntos
+    let p=obtenerPunto(carta);
+    puntoUsuario.innerText=parseInt(puntoUsuario.innerText)+parseInt(p);
+    //boom
+    if (puntoUsuario.innerText>21) {
+        stop();
+    }
+}
+function sacarPC() {
+    let carta=sacar()
+    zonaPC.append(carta);
+    //actualiza los puntos
+    let p=obtenerPunto(carta);
+    puntoPC.innerText=parseInt(puntoPC.innerText)+parseInt(p);
+    //si el usuario ya ha hecho boom, hace solo una vez
+    if (puntoUsuario.innerText>21) {
+        return;
+    }
+    //si no es mayor que el usuario y pc sigue.(sin parseInt alguna vez da fallo, que no sigue)
+    if (parseInt(puntoPC.innerText)<=parseInt(puntoUsuario.innerText) && puntoPC.innerText<21) {
+        //esperar a que se dibuje la carta.
+        setTimeout(sacarPC,100);
+    }
+}
 function obtenerPunto(carta) {
-    let c=carta.src
+    c=carta.src;
     if (c.length>0) {
         //obtiene el numero
-        let p=c.slice(c.lastIndexOf("/")+1,c.lastIndexOf(".")-1);
-        if (p<=10) {
-            p=p;
-        }else if(p=="A"){
+        let p=c.slice(c.lastIndexOf("/")+1,c.indexOf(".")-1);
+        if(p=="A"){
             p=11;
-        }else{
-            p=10;
+        }else if(p>="J"){
+            p=10
         }
         return p;
     }else{
@@ -71,6 +90,7 @@ function obtenerPunto(carta) {
         return 0;
     }
 }
+
 function stop(){
     //desabilitar
     pedir.disabled=true;
@@ -79,30 +99,6 @@ function stop(){
     sacarPC();
     //esperar a que se dibujen las cartas.
     setTimeout(gameOver,500);
-}
-function sacarPC() {
-    //aunque nunca va a pasar
-    if (mazo.length!=0) {
-        //obtener la carta
-        let carta=document.createElement("img");
-        carta.classList.add("carta");
-        carta.src=mazo.shift();
-        zonaPC.append(carta);
-        //calcular los puntos
-        let p=obtenerPunto(carta);
-        puntoPC.innerText=parseInt(puntoPC.innerText)+parseInt(p);
-        //si el usuario ya ha hecho boom, hace solo una vez
-        if (puntoUsuario.innerText>21) {
-            return;
-        }
-        //si no es mayor que el usuario y pc sigue.(sin parseInt alguna vez da fallo, que no sigue)
-        if (parseInt(puntoPC.innerText)<=parseInt(puntoUsuario.innerText) && puntoPC.innerText<21) {
-            //esperar a que se dibuje la carta.
-            setTimeout(sacarPC,100);
-        }
-    }else{
-        alert("Mazo vacío")
-    }
 }
 function gameOver(){
     //solo va a explotar una de las dos.
@@ -137,5 +133,5 @@ var puntoPC=puntos[1];
 newGame();
 //eventListener
 nuevo.addEventListener('click',newGame);
-pedir.addEventListener('click',sacar);
+pedir.addEventListener('click',sacarUsuario);
 detener.addEventListener('click',stop);
