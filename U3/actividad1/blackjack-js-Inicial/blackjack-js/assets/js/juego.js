@@ -97,7 +97,8 @@ function sacarPC() {
         }
         //si no es mayor que el usuario y pc sigue.(sin parseInt alguna vez da fallo, que no sigue)
         if (parseInt(puntoPC.innerText)<=parseInt(puntoUsuario.innerText) && puntoPC.innerText<21) {
-            sacarPC();
+            //esperar a que se dibuje la carta.
+            setTimeout(sacarPC,100);
         }
     }else{
         alert("Mazo vacío")
