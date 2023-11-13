@@ -5,6 +5,7 @@
  * 2S = Two of Spades
  */
 function barajaCompleta(){
+    const link="assets/cartas/"
     //obtiene el mazo compleato
     mazo=[];
     let numero=["A","2","3","4","5","6","7","8","9","10","J","Q","K"]
@@ -76,6 +77,8 @@ function stop(){
     detener.disabled=true;
     //turno de pc
     sacarPC();
+    //esperar a que se dibujen las cartas.
+    setTimeout(gameOver,100);
 }
 function sacarPC() {
     //aunque nunca va a pasar
@@ -100,8 +103,21 @@ function sacarPC() {
         alert("Mazo vacío")
     }
 }
+function gameOver(){
+    //solo va a explotar una de las dos.
+    if (puntoUsuario.innerText>21) {
+        alert("You lose.")
+    }else if (puntoPC.innerText>21) {
+        alert("You win.")
+    }else if (puntoPC.innerText==puntoUsuario.innerText) {
+        //si las dos tienen 21 empate.
+        alert("Draw.")
+    }else{
+        //Si no el PC seguramente tendrá más puntos y hemos perdido.
+        alert("You lose.")
+    }
+}
 //direccion de donde estan las imagenes
-const link="assets/cartas/"
 //el mazo
 var mazo=[];
 //botones
@@ -114,7 +130,7 @@ var zonaUsuario=document.querySelector("#jugador-cartas");
 var zonaPC=document.querySelector("#computadora-cartas");
 
 //el elemento donde están los puntos
-var puntos=document.querySelectorAll("small")
+let puntos=document.querySelectorAll("small")
 var puntoUsuario=puntos[0];
 var puntoPC=puntos[1];
 newGame();
