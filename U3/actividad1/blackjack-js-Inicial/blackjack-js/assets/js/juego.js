@@ -78,7 +78,7 @@ function stop(){
     //turno de pc
     sacarPC();
     //esperar a que se dibujen las cartas.
-    setTimeout(gameOver,100);
+    setTimeout(gameOver,500);
 }
 function sacarPC() {
     //aunque nunca va a pasar
