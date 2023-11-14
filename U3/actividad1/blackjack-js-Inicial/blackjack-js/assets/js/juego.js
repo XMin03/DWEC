@@ -7,14 +7,9 @@
 function barajaCompleta(){
     //obtiene el mazo compleato
     mazo=[];
-    let numero=["A","2","3","4","5","6","7","8","9","10","J","Q","K"]
-    let letra=["C","D","H","S"]
-    for (let i = 0; i < numero.length; i++) {
-        for (let j = 0; j < letra.length; j++) {
-            mazo.push(numero[i]+letra[j])
-        }
-    }
-    barajar();
+    let numero=["A","2","3","4","5","6","7","8","9","10","J","Q","K"];
+    let letra=["C","D","H","S"];
+    numero.forEach(n=>letra.forEach(l=>mazo.push(n+l)));
 }
 function barajar(){
     mazo=_.shuffle(mazo);
@@ -23,6 +18,7 @@ function barajar(){
 function newGame() {
     //rellenar el mazo
     barajaCompleta();
+    barajar();
     //limpiar las dos zonas
     zonaPC.replaceChildren();
     zonaUsuario.replaceChildren();
@@ -33,88 +29,72 @@ function newGame() {
     pedir.disabled=false;
     detener.disabled=false;
 }
-function sacar(){
-    //aunque nunca va a pasar
-    if (mazo.length!=0) {
-        const link="assets/cartas/"
-        //obtiene la carta
-        let carta=document.createElement("img");
-        carta.classList.add("carta");
-        let c=mazo.shift();
-        carta.src=link+c+".png";
-        return carta;
-    }else{
-        alert("Mazo vacío")
+function sacar(zona,punto) {
+    //obtener el valor de carta
+    let c=mazo.shift();
+    //pintar la carta
+    pintarCarta(c, zona);
+    //actualiza los puntos
+    actualizarPunto(c,punto);
+}
+function pintarCarta(c, zona){
+    let carta=document.createElement("img");
+    carta.classList.add("carta");
+    carta.src="assets/cartas/"+c+".png";
+    zona.append(carta);
+}
+function actualizarPunto(c,punto) {
+    //obtiene el numero
+    let p=c.slice(0,c.length-1);
+    if(p=="A"){
+        p=11;
+    }else if(p>="J"){
+        p=10
     }
+    punto.innerText=parseInt(punto.innerText)+parseInt(p);
 }
 function sacarUsuario() {
-    let carta=sacar()
-    zonaUsuario.append(carta);
-    //actualiza los puntos
-    let p=obtenerPunto(carta);
-    puntoUsuario.innerText=parseInt(puntoUsuario.innerText)+parseInt(p);
+    sacar(zonaUsuario,puntoUsuario);
     //boom
     if (puntoUsuario.innerText>21) {
         stop();
     }
 }
 function sacarPC() {
-    let carta=sacar()
-    zonaPC.append(carta);
-    //actualiza los puntos
-    let p=obtenerPunto(carta);
-    puntoPC.innerText=parseInt(puntoPC.innerText)+parseInt(p);
+    sacar(zonaPC,puntoPC);
     //si el usuario ya ha hecho boom, hace solo una vez
     if (puntoUsuario.innerText>21) {
         return;
     }
-    //si no es mayor que el usuario y pc sigue.(sin parseInt alguna vez da fallo, que no sigue)
+    //si no es mayor que el usuario y pc no ha hecho boom sigue.(minimo un parseInt que si no compara como si fueran Strings)
     if (parseInt(puntoPC.innerText)<=parseInt(puntoUsuario.innerText) && puntoPC.innerText<21) {
         //esperar a que se dibuje la carta.
         setTimeout(sacarPC,100);
     }
 }
-function obtenerPunto(carta) {
-    c=carta.src;
-    if (c.length>0) {
-        //obtiene el numero
-        let p=c.slice(c.lastIndexOf("/")+1,c.indexOf(".")-1);
-        if(p=="A"){
-            p=11;
-        }else if(p>="J"){
-            p=10
-        }
-        return p;
-    }else{
-        alert("Error obtenerPunto")
-        return 0;
-    }
-}
-
 function stop(){
-    //desabilitar
+    //desabilitar botones
     pedir.disabled=true;
     detener.disabled=true;
     //turno de pc
     sacarPC();
-    //esperar a que se dibujen las cartas.
+    //esperar a que se dibujen las cartas, y mostrar el resultado.
     setTimeout(gameOver,500);
 }
 function gameOver(){
-    //solo va a explotar una de las dos.
+    //Este if, se puede ahorrar. es posible que explote solo una de las dos.
     if (puntoUsuario.innerText>21) {
         alert("You lose.")
     }else if (puntoPC.innerText>21) {
         alert("You win.")
+    //si las dos tienen 21 empate.
     }else if (puntoPC.innerText==puntoUsuario.innerText) {
-        //si las dos tienen 21 empate.
         alert("Draw.")
     }else{
-        //Si no el PC seguramente tendrá más puntos y hemos perdido.
+    //Si no el PC seguramente tendrá más puntos sin explotar.
         alert("You lose.")
     }
 }
-//direccion de donde estan las imagenes
 //el mazo
 var mazo=[];
 //botones
