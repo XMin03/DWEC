@@ -95,18 +95,18 @@ function gameOver(){
 //el mazo
 var mazo=[];
 //botones
-let nuevo=document.querySelector("#btnNuevo");
-let pedir=document.querySelector("#btnPedir");
-let detener=document.querySelector("#btnDetener");
+const nuevo=document.querySelector("#btnNuevo");
+const pedir=document.querySelector("#btnPedir");
+const detener=document.querySelector("#btnDetener");
 
 //donde se ponen las cartas
-var zonaUsuario=document.querySelector("#jugador-cartas");
-var zonaPC=document.querySelector("#computadora-cartas");
+const zonaUsuario=document.querySelector("#jugador-cartas");
+const zonaPC=document.querySelector("#computadora-cartas");
 
 //el elemento donde están los puntos
-let puntos=document.querySelectorAll("small")
-var puntoUsuario=puntos[0];
-var puntoPC=puntos[1];
+const puntos=document.querySelectorAll("small")
+const puntoUsuario=puntos[0];
+const puntoPC=puntos[1];
 newGame();
 //eventListener
 nuevo.addEventListener('click',newGame);
