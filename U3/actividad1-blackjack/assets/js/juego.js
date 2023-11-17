@@ -46,11 +46,7 @@ function pintarCarta(c, zona){
 function actualizarPunto(c,punto) {
     //obtiene el numero
     let p=c.slice(0,c.length-1);
-    if(p=="A"){
-        p=11;
-    }else if(p>="J"){
-        p=10
-    }
+    p=p=="A"?11:p>="J"?10:p;
     punto.innerText=parseInt(punto.innerText)+parseInt(p);
 }
 function sacarUsuario() {
@@ -82,7 +78,8 @@ function stop(){
     setTimeout(gameOver,500);
 }
 function gameOver(){
-    //Este if, se puede ahorrar. es posible que explote solo una de las dos.
+    alert(puntoPC.innerText>21?"You win.":puntoPC.innerText==puntoUsuario.innerText?"Draw.":"You lose");
+    /* Este if, se puede ahorrar. es posible que explote solo una de las dos.
     if (puntoUsuario.innerText>21) {
         alert("You lose.")
     }else if (puntoPC.innerText>21) {
@@ -93,7 +90,7 @@ function gameOver(){
     }else{
     //Si no el PC seguramente tendrá más puntos sin explotar.
         alert("You lose.")
-    }
+    }*/
 }
 //el mazo
 var mazo=[];
