@@ -1,3 +1,4 @@
+(()=>{
 /**
  * 2C = Two of Clubs
  * 2D = Two of Diamonds
@@ -112,3 +113,4 @@ newGame();
 nuevo.addEventListener('click',newGame);
 pedir.addEventListener('click',sacarUsuario);
 detener.addEventListener('click',stop);
+})()
