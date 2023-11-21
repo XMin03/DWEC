@@ -17,6 +17,11 @@ function barajar(){
 }
 //resetAll
 function newGame() {
+    // Verificar si hay victorias almacenadas en localStorage
+    if (localStorage.getItem('victoriasJugador')) {
+        victoriasJugador = parseInt(localStorage.getItem('victoriasJugador'));
+        victoriasComputadora = parseInt(localStorage.getItem('victoriasComputadora'));
+    }
     //rellenar el mazo
     barajaCompleta();
     barajar();
@@ -29,6 +34,7 @@ function newGame() {
     //reabilita los botones
     pedir.disabled=false;
     detener.disabled=false;
+    window.addEventListener('beforeunload', cancel);
 }
 function sacar(zona,punto) {
     //obtener el valor de carta
@@ -79,19 +85,22 @@ function stop(){
     setTimeout(gameOver,500);
 }
 function gameOver(){
-    alert(puntoPC.innerText>21?"You win.":puntoPC.innerText==puntoUsuario.innerText?"Draw.":"You lose");
-    /* Este if, se puede ahorrar. es posible que explote solo una de las dos.
-    if (puntoUsuario.innerText>21) {
-        alert("You lose.")
-    }else if (puntoPC.innerText>21) {
-        alert("You win.")
-    //si las dos tienen 21 empate.
-    }else if (puntoPC.innerText==puntoUsuario.innerText) {
-        alert("Draw.")
-    }else{
-    //Si no el PC seguramente tendrá más puntos sin explotar.
-        alert("You lose.")
-    }*/
+    if (puntoPC.innerText > 21) {
+        alert("You win.");
+        victoriasJugador++;
+    } else if (puntoPC.innerText == puntoUsuario.innerText) {
+        alert("Draw.");
+    } else {
+        alert("You lose.");
+        victoriasComputadora++;
+    }
+    localStorage.setItem('victoriasJugador', victoriasJugador);
+    localStorage.setItem('victoriasComputadora', victoriasComputadora);
+    window.removeEventListener('beforeunload', cancel);
+}
+function cancel() {
+    victoriasComputadora++;
+    localStorage.setItem('victoriasComputadora', victoriasComputadora);
 }
 //el mazo
 var mazo=[];
@@ -108,6 +117,9 @@ const zonaPC=document.querySelector("#computadora-cartas");
 const puntos=document.querySelectorAll("small")
 const puntoUsuario=puntos[0];
 const puntoPC=puntos[1];
+let victoriasJugador = 0;
+let victoriasComputadora = 0;
+
 newGame();
 //eventListener
 nuevo.addEventListener('click',newGame);
