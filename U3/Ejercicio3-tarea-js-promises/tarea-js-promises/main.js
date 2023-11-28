@@ -10,6 +10,7 @@ fetch(url).then((resp)=>resp.json().then(datas=>{datas.forEach(data=>{
     let li=document.createElement("li")
     let a=document.createElement("a")
     a.innerHTML=data.nombre;
+    a.href="#";
     li.append(a);
     listado.append(li);
 })
