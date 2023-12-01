@@ -13,7 +13,7 @@ fetch(url).then((resp)=>resp.json().then(datas=>{datas.forEach(data=>{
     a.href="#";
     a.setAttribute("id",data.id);
     li.append(a);
-    a.addEventListener("click",buscar);
+    a.addEventListener("click",buscar);//yo pondria todos los datos usando data, asi no hace falta el fetch
     listado.append(li);
 })
 })).catch(err=>console.log(err));
