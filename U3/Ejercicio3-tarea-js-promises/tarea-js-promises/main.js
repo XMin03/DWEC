@@ -8,14 +8,14 @@ let listado=document.querySelector("ul");
 listado.innerHTML="";
 fetch(url+"peliculas").then(resp=>resp.json().then(datas=>{datas.forEach(data=>{
     if (resp.status==200) {
-    let li=document.createElement("li")
-    let a=document.createElement("a")
-    a.innerHTML=data.nombre;
-    a.href="#";
-    a.setAttribute("id",data.id);
-    li.append(a);
-    a.addEventListener("click",buscar);//yo pondria todos los datos usando data, asi no hace falta el fetch
-    listado.append(li);
+        let li=document.createElement("li")
+        let a=document.createElement("a")
+        a.innerHTML=data.nombre;
+        a.href="#";
+        a.setAttribute("id",data.id);
+        li.append(a);
+        a.addEventListener("click",buscar);//yo pondria todos los datos usando data, asi no hace falta el fetch
+        listado.append(li);
     }else{
         console.log(resp.status);
     }
