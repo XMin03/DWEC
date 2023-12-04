@@ -5,36 +5,67 @@ let cartel=document.querySelector("#cartel img")
 let estrella=document.getElementsByClassName("estrellas")[0];
 
 let listado=document.querySelector("ul");
-listado.innerHTML="";
-fetch(url+"peliculas").then(resp=>resp.json().then(datas=>{datas.forEach(data=>{
-    if (resp.status==200) {
-        let li=document.createElement("li")
-        let a=document.createElement("a")
-        a.innerHTML=data.nombre;
-        a.href="#";
-        a.setAttribute("id",data.id);
-        li.append(a);
-        a.addEventListener("click",buscar);//yo pondria todos los datos usando data, asi no hace falta el fetch
-        listado.append(li);
+
+fetch(url+"peliculas").then(resp=>{
+    //si hay respuestas
+    if(resp.status==200){
+        //vaciar
+        listado.innerHTML="";
+        //obtener la lista
+        resp.json().then(datas=>{datas.forEach(data=>{
+            //crear los elementos
+            let li=document.createElement("li")
+            let a=document.createElement("a")
+            //datos
+            a.innerHTML=data.nombre;
+            //enlaces
+            a.href="#";
+            //almacenar la id
+            a.setAttribute("id",data.id);
+            //evento
+            a.addEventListener("click",buscar);
+            //appends
+            li.append(a);
+            listado.append(li);
+        })})
     }else{
+        //si no no hace nada
         console.log(resp.status);
     }
-})
-})).catch(err=>console.log(err));
+    //caso de error
+}).catch(err=>console.log(err));
 
 function buscar() {
+    //cargando
     cartel.src="assets/imgs/loading.gif";
-    fetchSlow(url+"pelicula/"+this.id).then(resp=>resp.json().then(data=>{
+    //fetch
+    fetchSlow(url+"pelicula/"+this.id).then(resp=>{
+        //si hay respuestar
         if (resp.status==200) {
-            director.innerHTML=data.director;
-            fetch(url+"clasificaciones/"+data.clasificacion).then(r=>r.json().then(d=>{
-                clasificacion.innerHTML=d.nombre
-            }));
-            estrella.innerHTML="<i class='fa fa-star'></i>".repeat(data.valoracion);
-            cartel.src="assets/imgs/"+data.cartel;    
+            //obtener
+            resp.json().then(data=>{
+                //reemplazar los datos
+                director.innerHTML=data.director;
+                estrella.innerHTML="<i class='fa fa-star'></i>".repeat(data.valoracion);
+                cartel.src="assets/imgs/"+data.cartel;
+                //calificacion
+                fetch(url+"clasificaciones/"+data.clasificacion).then(r=>{
+                    //si hay respuesta muestra el nombre si no el codigo
+                    r.status==200?r.json().then(d=>clasificacion.innerHTML=d.nombre):clasificacion.innerHTML=data.clasificacion;
+                }).catch(err=>{
+                    //en caso de error undefined
+                    console.log(err);
+                    clasificacion.innerHTML="undefined";
+                });
+            })
         }else{
+            //imagen de error
+            cartel.src="assets/imgs/El_sexto_sentido.jpeg";
             console.log(resp.status);
         }
-    })).catch(err=>console.log("error"));
+    }).catch(err=>{
+        console.log(err);
+        //imagen de error
+        cartel.src="assets/imgs/El_sexto_sentido.jpeg";
+    });
 }
-let a=3;
