@@ -79,6 +79,4 @@ function cerrado() {
     pedir.disabled=true;
     empezar.disabled=true;
 }
-function guardar() {
-    localStorage.setItem("enJuego",JSON.stringify(enJuego))
-}
+function guardar() {localStorage.setItem("enJuego",JSON.stringify(enJuego))}
