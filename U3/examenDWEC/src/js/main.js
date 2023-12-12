@@ -3,7 +3,6 @@
 
 //Variables globales (etiquetas y demás)
 enJuego.arr=generar();
-enJuego.carta=[];
 //Inicialización de bototes
 let pedir=document.getElementById("botonPedirCarta");
 let empezar=document.getElementById("start");

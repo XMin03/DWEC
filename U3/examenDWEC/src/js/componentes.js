@@ -24,13 +24,8 @@ function enJuego_reset() {
     enJuego=JSON.parse(localStorage.getItem("enJuego"));
     localStorage.removeItem("enJuego")
     // Reinicializar las propiedades a valores por defecto.
-    for (let index = 0; index < enJuego.carta.length; index++) {
-        let square=document.getElementById("square"+index);
-        square.innerText=enJuego.carta[index];
+    for (const index in enJuego.carta) {
+        document.getElementById("square"+index).innerText=enJuego.carta[index];
     }
-    enJuego.premiada.forEach(element => {
-        let pos=enJuego.carta.indexOf(element);
-        let square=document.getElementById("square"+pos);
-        square.classList.add("bg-info","text-white")
-    });
+    enJuego.premiada.forEach(element => document.getElementById("square"+enJuego.carta.indexOf(element)).classList.add("bg-info","text-white"));
 }
