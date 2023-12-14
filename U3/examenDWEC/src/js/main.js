@@ -2,13 +2,13 @@
 //Código que se pude utilizar en la función de empezar a jugar (llevarla a funciones.js)
 
 //Variables globales (etiquetas y demás)
-enJuego.arr=generar();
+let saludo=document.getElementById("saludo");
+
 //Inicialización de bototes
 let pedir=document.getElementById("botonPedirCarta");
 let empezar=document.getElementById("start");
 let consultar=document.getElementById("botonConsultar");
 let cerrar=document.getElementById("botonCerrarSesion");
-let saludo=document.getElementById("saludo");
 let usuario=document.getElementById("usuario");
 let contraseña=document.getElementById("passwd");
 

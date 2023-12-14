@@ -28,4 +28,5 @@ function enJuego_reset() {
         document.getElementById("square"+index).innerText=enJuego.carta[index];
     }
     enJuego.premiada.forEach(element => document.getElementById("square"+enJuego.carta.indexOf(element)).classList.add("bg-info","text-white"));
+    sacar();
 }

@@ -10,6 +10,7 @@ function generar() {
 function nuevaCarta() {
     enJuego.sacada=[];
     enJuego.premiada=[];
+    enJuego.arr=generar();
     document.getElementById("resultado").innerHTML="";
     document.getElementById("jugando").innerHTML="";
     enJuego.carta=generar().slice(0,24).sort(comparar);
@@ -20,19 +21,21 @@ function nuevaCarta() {
     }
 }
 function sacar() {
+    pedir.disabled=true;
     empezar.disabled=true;
     let interval;
     let jugando=document.getElementById("jugando");
     window.addEventListener('beforeunload', guardar);
     interval = setInterval(() => {
         let bola=enJuego.arr.shift();
+        console.log(enJuego.arr)
         jugando.innerHTML=bola;
         enJuego.sacada.push(bola);
         let pos=enJuego.carta.indexOf(bola);
         if (pos!=-1) {
             enJuego.premiada.push(bola)
-            let square=document.getElementById("square"+pos);
-            square.classList.add("bg-info","text-white")
+            document.getElementById("square"+pos).classList.add("bg-info","text-white");
+            
             if (enJuego.premiada.length==5) {
                 clearInterval(interval);
                 let jugador=JSON.parse(localStorage.getItem("jugador"));
@@ -44,6 +47,7 @@ function sacar() {
                 
                 window.removeEventListener('beforeunload', guardar);
                 empezar.disabled=false;
+                pedir.disabled=false;
             }
         }
     }, 1000);
