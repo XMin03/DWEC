@@ -28,7 +28,6 @@ function sacar() {
     window.addEventListener('beforeunload', guardar);
     interval = setInterval(() => {
         let bola=enJuego.arr.shift();
-        console.log(enJuego.arr)
         jugando.innerHTML=bola;
         enJuego.sacada.push(bola);
         let pos=enJuego.carta.indexOf(bola);
