@@ -1,3 +1,14 @@
+const obtenerJugadores = () => {
+    let url="http://localhost:3000/jugador";
+
+    return fetch(url).then(resp => resp.json())
+
+}
+let jugador = {
+    id: 0,
+    nombre: "",
+    resultado: [],
+};
 let enJuego={
     mazo:[],
     cartaGirada:[],
@@ -5,10 +16,22 @@ let enJuego={
 }
 baraja();
 let intentos=document.getElementById("intentos");
-for (let index = 0; index < 12; index++) {
-    document.getElementById("carta"+index).addEventListener("click",()=>girar(index));   
+
+let consultar=document.getElementById("botonConsultar");
+let cerrar=document.getElementById("botonCerrarSesion");
+let usuario=document.getElementById("usuario");
+let contraseña=document.getElementById("passwd");
+
+consultar.addEventListener("click",consulta)
+cerrar.addEventListener("click",cerrado)
+
+if (localStorage.getItem("jugador")!=null) {
+    login();
+}else{
+    cerrado();
 }
+
 window.addEventListener("beforeunload",guardar)
-if (!!localStorage.getItem("enJuego")) {
+if (localStorage.getItem("enJuego")) {
     cargar();
 }
