@@ -13,7 +13,7 @@ let siguiente=document.getElementById("siguiente");
 let ordenValores = ['A','2','3','4','5','6','7','8','9','J','Q','K'];
 //preparaciones iniciales
 generarCartas();
-etqZonaJuego.hidden=false;
+etqZonaJuego.hidden=true;
 
 //Cargar datos desde localStorage (Parte 2 y parate 3)
 if (localStorage.getItem("player")) {
