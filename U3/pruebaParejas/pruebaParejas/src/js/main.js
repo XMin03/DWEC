@@ -25,7 +25,7 @@ let consultar=document.getElementById("botonConsultar");
 let cerrar=document.getElementById("botonCerrarSesion");
 let usuario=document.getElementById("usuario");
 let contraseña=document.getElementById("passwd");
-
+cerrar.classList.add("invisible");
 //eventListener
 consultar.addEventListener("click",consulta)
 cerrar.addEventListener("click",cerrado)
@@ -37,8 +37,6 @@ for (let index = 0; index < 12; index++) {
 //parte2
 if (localStorage.getItem("jugador")!=null) {
     login();
-}else{
-    cerrado();
 }
 //parte3
 if (localStorage.getItem("enJuego")) {
