@@ -36,14 +36,12 @@ function conprobarFinJuego() {
     if (enJuego.acertadas==12) {
         player.resultado.push(enJuego.intentos);
         localStorage.setItem("player",JSON.stringify(player));
-        setTimeout(()=>{
-            alert("You win.")
-            resetJuego();
-            intento.innerHTML=enJuego.intentos;
-        },200)
+        mensaje.hidden=false;
+        intento.innerHTML=enJuego.intentos;
     }
 }
 function resetJuego() {
+    mensaje.hidden=true;
     enJuego_reset();
     resetCarta();
     showMessage();
@@ -99,13 +97,13 @@ function guardar() {
 }
 function cargar() {
     enJuego=JSON.parse(localStorage.getItem("enJuego"));
-    let hasta=ordenValores.indexOf(enJuego.siguiente);
     for (const index in enJuego.cartas) {
         let val=enJuego.cartas[index]
         let pos=ordenValores.indexOf(val.charAt(0))
-        if (pos<hasta) {
+        if (pos<enJuego.acertadas) {
             document.getElementById("carta"+index).src="assets/img/cartas/"+val+".png";
         }
     }
     showMessage();
+    conprobarFinJuego();
 }
