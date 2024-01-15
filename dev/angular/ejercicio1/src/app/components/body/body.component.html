@@ -1,1 +1,20 @@
-<p>body works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <h1>NgIf</h1>
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text" *ngIf="mostrar">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a class="btn btn-primary" (click)="cambiar()">Ver/Ocultar</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <h1>NgFor</h1>
+            <ul class="list-group">
+                <li class="list-group-item list-group-item-action" *ngFor="let l of lista;let i=index">{{i+1}}.{{l}}</li>
+            </ul>
+        </div>
+    </div>
+</div>
