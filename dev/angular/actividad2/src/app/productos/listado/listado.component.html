@@ -8,11 +8,4 @@
         <button class="col-2 btn btn-danger" (click)="eliminar(i)">Eliminar</button>
     </li>
 </ul>
-<h1>Eliminado</h1>
-<ul class="list-group">
-    <li class="list-group-item row d-inline-flex" *ngFor="let e of eliminados">
-        <div class="col-2">{{e.nombre}}</div>
-        <div class="col-2">{{e.precio}}</div>
-        <div class="col-2">{{e.categoria}}</div>
-    </li>
-</ul>
+<h4>{{mensaje}}</h4>

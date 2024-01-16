@@ -15,8 +15,8 @@ export class ListadoComponent {
     {nombre:"Soplete",precio:52.75},
     {nombre:"Silla",precio:42.5,categoria:"Mobiliario"}
   ]
-  eliminados:any[]=[]
+  mensaje=""
   eliminar(index:number){
-    this.eliminados.push(this.productos.splice(index,1)[0]);
+    this.mensaje="Se ha eliminado "+this.productos.splice(index,1)[0].nombre;
   }
 }
