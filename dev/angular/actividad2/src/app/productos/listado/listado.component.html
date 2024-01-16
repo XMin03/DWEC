@@ -1,1 +1,18 @@
-<p>listado works!</p>
+<h1>Listado</h1>
+<div *ngIf="productos.length==0">Error! No existen objetos en el arreglo.</div>
+<ul class="list-group" >
+    <li class="list-group-item row d-inline-flex" *ngFor="let p of productos;let i=index">
+        <div class="col-2">{{p.nombre}}</div>
+        <div class="col-2">{{p.precio}}</div>
+        <div class="col-2">{{p.categoria}}</div>
+        <button class="col-2 btn btn-danger" (click)="eliminar(i)">Eliminar</button>
+    </li>
+</ul>
+<h1>Eliminado</h1>
+<ul class="list-group">
+    <li class="list-group-item row d-inline-flex" *ngFor="let e of eliminados">
+        <div class="col-2">{{e.nombre}}</div>
+        <div class="col-2">{{e.precio}}</div>
+        <div class="col-2">{{e.categoria}}</div>
+    </li>
+</ul>
