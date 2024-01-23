@@ -8,4 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './lenguaje.component.css'
 })
 export class LenguajeComponent {
+
 }

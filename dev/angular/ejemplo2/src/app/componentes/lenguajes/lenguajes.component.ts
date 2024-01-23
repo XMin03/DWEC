@@ -1,6 +1,7 @@
 import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { Lenguaje, LenguajesService } from '../../servicios/lenguajes.service';
 
 @Component({
   selector: 'app-lenguajes',
@@ -10,5 +11,11 @@ import { RouterLink } from '@angular/router';
   styleUrl: './lenguajes.component.css'
 })
 export class LenguajesComponent {
-  lenguajes=["零", "壹", "貳", "叁", "肆", "伍", "陸", "柒", "捌", "玖", "拾"];
+  lenguajes:Lenguaje[];
+  constructor (private _lenguajesService:LenguajesService){
+    this.lenguajes=this._lenguajesService.getLenguajes();
+  }
+  rutaImagen(imagen:string):string{
+    return this._lenguajesService.rutaImagen(imagen);
+  }
 }
