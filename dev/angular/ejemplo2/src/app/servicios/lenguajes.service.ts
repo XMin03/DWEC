@@ -13,6 +13,7 @@ export class LenguajesService {
   ]
   constructor() { }
   getLenguajes():Lenguaje[]{return this._lenguajes}
+  buscarLenguajes(n:string):Lenguaje[]{return this._lenguajes.filter(l=>l.nombre.toLowerCase().includes(n))}
   rutaImagen(archivo:string):string{return "assets/img/"+archivo;}
 }
 export interface Lenguaje{

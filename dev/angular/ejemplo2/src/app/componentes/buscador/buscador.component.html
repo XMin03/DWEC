@@ -1,1 +1,10 @@
-<p>buscador works!</p>
+<div class="row m-0" >
+    <div class="card col-lg-2 col-md-3 col-sm-6" *ngFor="let lenguaje of lenguajes; let i=index">
+        <img src="{{rutaImagen(lenguaje.imagen)}}" class="card-img-top" style="width: 40%;" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">{{lenguaje.nombre}}</h5>
+            <p class="card-text">{{lenguaje.descripcion}}</p>
+            <a class="btn btn-primary" [routerLink]="['/lenguaje',i]">Ver más...</a>
+        </div>
+    </div>
+</div>

@@ -10,6 +10,6 @@ export const routes: Routes = [
     {path:'about',component:AboutComponent},
     {path:'lenguajes',component:LenguajesComponent},
     {path:'lenguaje/:id',component:LenguajeComponent},
-    {path:'buscador',component:BuscadorComponent},
+    {path:'buscador/:palabra',component:BuscadorComponent},
     {path:'**',pathMatch:'full',redirectTo:'home'}
 ];
