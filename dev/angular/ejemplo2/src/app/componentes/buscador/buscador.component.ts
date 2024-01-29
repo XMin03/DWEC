@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { Lenguaje, LenguajesService } from '../../servicios/lenguajes.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { NgFor } from '@angular/common';
+import { LenguajeTarjetaComponent } from '../lenguaje-tarjeta/lenguaje-tarjeta.component';
 
 @Component({
   selector: 'app-buscador',
   standalone: true,
-  imports: [RouterLink,NgFor],
+  imports: [RouterLink,NgFor,LenguajeTarjetaComponent],
   templateUrl: './buscador.component.html',
   styleUrl: './buscador.component.css'
 })

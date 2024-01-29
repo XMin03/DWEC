@@ -15,6 +15,8 @@ export class LenguajesService {
   getLenguajes():Lenguaje[]{return this._lenguajes}
   buscarLenguajes(n:string):Lenguaje[]{return this._lenguajes.filter(l=>l.nombre.toLowerCase().includes(n))}
   rutaImagen(archivo:string):string{return "assets/img/"+archivo;}
+  getLenguaje(i:number){
+    return this._lenguajes.at(i)};
 }
 export interface Lenguaje{
   nombre:string;
