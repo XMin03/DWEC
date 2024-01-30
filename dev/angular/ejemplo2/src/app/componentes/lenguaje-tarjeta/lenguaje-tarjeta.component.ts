@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Lenguaje } from '../../servicios/lenguajes.service';
 
 @Component({
@@ -13,4 +13,8 @@ export class LenguajeTarjetaComponent {
   @Input() lenguaje:Lenguaje|null=null;
   @Input() ruta:string|null=null;
   @Input() i:number|null=null;
+  constructor (private _router:Router){}
+  verMas(){
+    return this._router.navigate(["lenguaje",this.i]);
+  }
 }

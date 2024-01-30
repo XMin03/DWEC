@@ -2,5 +2,5 @@
 <div class="card-body">
     <h5 class="card-title">{{lenguaje?.nombre}}</h5>
     <p class="card-text">{{lenguaje?.descripcion}}</p>
-    <a class="btn btn-primary" [routerLink]="['/lenguaje',i]">Ver más...</a>
+    <a class="btn btn-primary" (click)="verMas()">Ver más...</a>
 </div>
