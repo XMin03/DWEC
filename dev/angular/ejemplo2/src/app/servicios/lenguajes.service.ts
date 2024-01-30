@@ -13,7 +13,19 @@ export class LenguajesService {
   ]
   constructor() { }
   getLenguajes():Lenguaje[]{return this._lenguajes}
-  buscarLenguajes(n:string):Lenguaje[]{return this._lenguajes.filter(l=>l.nombre.toLowerCase().includes(n))}
+
+  buscarLenguajes(s:string):any[]{
+    let filtrado:any[]=[];
+    let i=0;
+    for (const l of this._lenguajes) {
+      if (l.nombre.toLowerCase().includes(s.toLowerCase())) {
+        filtrado.push({id: i,item: l})
+      }
+      i++;
+    }
+    return filtrado;
+  }
+
   rutaImagen(archivo:string):string{return "assets/img/"+archivo;}
   getLenguaje(i:number){
     return this._lenguajes.at(i)};

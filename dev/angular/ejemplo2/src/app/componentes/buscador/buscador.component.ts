@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Lenguaje, LenguajesService } from '../../servicios/lenguajes.service';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { NgFor } from '@angular/common';
 import { LenguajeTarjetaComponent } from '../lenguaje-tarjeta/lenguaje-tarjeta.component';
 
@@ -12,12 +12,14 @@ import { LenguajeTarjetaComponent } from '../lenguaje-tarjeta/lenguaje-tarjeta.c
   styleUrl: './buscador.component.css'
 })
 export class BuscadorComponent {
-  lenguajes:Lenguaje[]=[];
-  constructor(private _lenguajeService:LenguajesService,private _activaredRoutes:ActivatedRoute){
+  lenguajes:any[]=[];
+  constructor(private _lenguajeService:LenguajesService,private _activaredRoutes:ActivatedRoute, private _router: Router){
     _activaredRoutes.params.subscribe(p=>{
       this.lenguajes=_lenguajeService.buscarLenguajes(p['palabra']);
     })
   }
   rutaImagen(archivo:string):string{return "assets/img/"+archivo;}
-
+  verTarjeta(i:number) {
+    this._router.navigate(["lenguaje",i])
+  }
 }

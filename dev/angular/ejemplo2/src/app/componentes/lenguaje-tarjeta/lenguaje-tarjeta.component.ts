@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { Lenguaje } from '../../servicios/lenguajes.service';
 
@@ -11,10 +11,14 @@ import { Lenguaje } from '../../servicios/lenguajes.service';
 })
 export class LenguajeTarjetaComponent {
   @Input() lenguaje:Lenguaje|null=null;
-  @Input() ruta:string|null=null;
-  @Input() i:number|null=null;
-  constructor (private _router:Router){}
+  @Input() ruta:string="";
+  @Input() i:number=0;
+  @Output() botonTarjetaPulsado:EventEmitter<number>;
+  constructor (private _router:Router){
+    this.botonTarjetaPulsado=new EventEmitter();
+  }
   verMas(){
-    return this._router.navigate(["lenguaje",this.i]);
+    //return this._router.navigate(["lenguaje",this.i]);
+    this.botonTarjetaPulsado.emit(this.i);
   }
 }
