@@ -1,0 +1,15 @@
+<form class="col-6" (ngSubmit)="submit()">
+    <div class="row bg-primary">
+        <div class="col text-center">FORMULARIO</div>
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" name="nombre" id="" placeholder="Nombre" [(ngModel)]=producto.nombre>
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control" name="num" id="" placeholder="0" [(ngModel)]=producto.num>
+    </div>
+    <button type="submit" class="btn btn-primary">Enviar</button>
+    <div class="warning bg-warning" *ngIf="producto.nombre==''">
+      El nombre del producto es obligatorio.
+    </div>
+</form>

@@ -1,0 +1,28 @@
+<div class="col-6">
+    <div class="row bg-primary">
+        <div class="col text-center">-X- PRODUCTOS</div>
+    </div>
+    <div class="row" *ngIf="usuarios.length==0">
+        <div class="col-12 bg-danger">
+            No hay productos
+        </div>
+    </div>
+    <div class="row fila_productos" *ngFor="let u of usuarios" >
+        <div class="col-sm-5 col-lg-3">
+            {{u.nombre}}
+        </div>
+        <div class="col-sm-2 col-lg-1">
+            {{u.edad}}
+        </div>
+        <div class="col-sm-5 col-lg-5">
+            {{u.profesion}}
+        </div>
+    </div>
+    <div class="form-group">
+        <input #nombre type="text" (keydown.enter)="eliminar(nombre.value)"  class="form-control" name="" id="" placeholder="Producto">
+    </div>
+    <button (click)="eliminar(nombre.value)" type="submit" class="btn btn-primary">Borrar</button>
+    <div class="warning bg-warning">
+      {{message}}
+    </div>
+</div>
