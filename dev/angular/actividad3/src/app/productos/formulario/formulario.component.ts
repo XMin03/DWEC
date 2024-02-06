@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ProductosService } from '../../service/productos.service';
 import { Productos } from '../interface.productos';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -18,10 +18,11 @@ export class FormularioComponent {
     num:0,
     categoria:"no tiene categ"
   }
-  submit(){
+  submit(f:NgForm){
     if (this.producto.nombre) {
       this.productos.push({...this.producto});  
     }
+    console.log(f.value);
   }
   constructor(private _productoService:ProductosService){
     this.productos=_productoService.getAll();

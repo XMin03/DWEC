@@ -1,15 +1,26 @@
-<form class="col-6" (ngSubmit)="submit()">
-    <div class="row bg-primary">
+<form [formGroup]="dFormulario" (ngSubmit)="submit()" novalidate>
+  <div class="row bg-primary">
         <div class="col text-center">FORMULARIO</div>
     </div>
     <div class="form-group">
-      <input type="text" class="form-control" name="nombre" id="" placeholder="Nombre" [(ngModel)]=usuario.nombre>
+      <input formControlName="nombre" class="form-control" [ngClass]="{'is-invalid': !dFormulario.get('nombre')?.valid}" type="text" class="form-control" placeholder="Nombre">
+      <div *ngIf="dFormulario.controls['nombre'].errors?.['required']" class="col-8 warning bg-warning">
+        Nombre requerido.</div>
+       <div *ngIf="dFormulario.controls['nombre'].errors?.['minlength']" class="col-8 warning bg-warning">
+        Longitud mínima {{dFormulario.controls["nombre"].errors?.["minlength"]?.["requiredLength"] }} caracteres.
+      </div>
     </div>
     <div class="form-group">
-        <input type="text" class="form-control" name="num" id="" placeholder="0" [(ngModel)]=usuario.edad>
+        <input formControlName="edad" [ngClass]="{'is-invalid': !dFormulario.get('edad')?.valid}" type="text" class="form-control" name="num" id="" placeholder="0">
+        <div *ngIf="dFormulario.controls['edad'].errors?.['required']" class="col-8 warning bg-warning">
+          Edad requerida.
+        </div>
+         <div *ngIf="dFormulario.controls['edad'].errors?.['minlength']" class="col-8 warning bg-warning">
+          Minimo {{dFormulario.controls["edad"].errors?.["min"]}}.
+        </div>    
+        <div *ngIf="dFormulario.controls['edad'].errors?.['pattern']" class="col-8 warning bg-warning">
+          Solo números.
+        </div>    
     </div>
     <button type="submit" class="btn btn-primary">Enviar</button>
-    <div class="warning bg-warning" *ngIf="usuario.nombre==''">
-      El nombre del usuario es obligatorio.
-    </div>
 </form>

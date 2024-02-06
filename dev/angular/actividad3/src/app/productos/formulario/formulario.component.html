@@ -1,15 +1,17 @@
-<form class="col-6" (ngSubmit)="submit()">
+<form class="col-6" (ngSubmit)="submit(tFormulario)" #tFormulario="ngForm">
     <div class="row bg-primary">
         <div class="col text-center">FORMULARIO</div>
     </div>
     <div class="form-group">
-      <input type="text" class="form-control" name="nombre" id="" placeholder="Nombre" [(ngModel)]=producto.nombre>
+      <input #nombre="ngModel" type="text"  required
+      minlength="4" class="form-control" name="nombre" id="" placeholder="Nombre" [(ngModel)]=producto.nombre>
+      <div *ngIf="nombre.errors?.['required']" class="col-8 warning bg-warning">
+        Nombre requerido.</div>
+       <div *ngIf="nombre.errors?.['minlength']" class="col-8 warning bg-warning">
+        Longitud mínima 4 caracteres.</div>
     </div>
     <div class="form-group">
         <input type="text" class="form-control" name="num" id="" placeholder="0" [(ngModel)]=producto.num>
     </div>
-    <button type="submit" class="btn btn-primary">Enviar</button>
-    <div class="warning bg-warning" *ngIf="producto.nombre==''">
-      El nombre del producto es obligatorio.
-    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="!tFormulario.valid">Enviar</button>
 </form>
