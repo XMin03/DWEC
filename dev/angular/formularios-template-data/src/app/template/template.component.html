@@ -1,0 +1,111 @@
+<h4>Formularios <small>template</small></h4>
+<hr>
+<form novalidate 
+      (ngSubmit)="enviar(tFormulario)" 
+      #tFormulario="ngForm">
+  <div>
+    <div class="form-group row"><label class="col-2 col-form-label">Nombre <small>(*)</small></label><div class="col-8">
+        <input class="form-control" type="text" placeholder="Nombre"
+               name="nombrexx"
+               [(ngModel)]="datosFormulario.nombre"
+               required
+               minlength="4"
+               #nombre="ngModel">
+               <div *ngIf="nombre.errors?.['required']" class="col-8">
+                Nombre requerido.</div>
+               <div *ngIf="nombre.errors?.['minlength']" class="col-8">
+                Longitud mínima 4 caracteres.</div>
+      </div>
+
+    </div>
+    <div class="form-group row"><label class="col-2 col-form-label">Apellidos <small>(*)</small></label><div class="col-8">
+        <input class="form-control" type="text" placeholder="Apellido"
+               name="apellidosxx"
+               [(ngModel)]="datosFormulario.apellidos"
+               required>
+      </div>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Correo</label>
+    <div class="col-md-8">
+      <input class="form-control" type="email" placeholder="Correo electrónico"
+             name="correo"
+             pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+             [(ngModel)]="datosFormulario.correo">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">País</label>
+    <div class="col-md-8">
+      <select [(ngModel)]="datosFormulario.pais" 
+            name="pais"
+            class="form-control">
+        <option value="">Seleccione un país</option>
+        <option *ngFor="let p of paises" [value]="p.codigo">
+          {{ p.nombre }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Sexo</label>
+    <div class="col-md-8">
+
+      <div *ngFor="let s of sexos"
+            class="form-check form-check-inline">
+        <input [(ngModel)]="datosFormulario.sexo" 
+              class="form-check-input" 
+              type="radio" id="inlineCheckbox1" 
+              name="sexo" 
+              [value]="s">
+        <label class="form-check-label" 
+              for="inlineCheckbox1">{{ s }}</label>
+      </div>
+
+      <!-- <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+        <label class="form-check-label" for="inlineCheckbox2">Mujer</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+        <label class="form-check-label" for="inlineCheckbox3">Sin definir</label>
+      </div> -->
+
+    </div> 
+  </div>
+
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">&nbsp;</label>
+    <div class="col-md-8">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1"
+              [(ngModel)]="datosFormulario.acepta"
+              name="acepta"
+              required>
+        <label class="form-check-label" for="defaultCheck1">
+          Acepta las condiciones
+        </label>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">&nbsp;</label>
+    <div class="input-group col-md-2">
+      <button [disabled]="!tFormulario.valid" 
+            type="submit" 
+            class="btn btn-outline-primary">
+        Guardar
+      </button>
+    </div>
+    <div class="col-md-6" hidden>
+      {{ datosFormulario | json }}
+    </div>
+  </div>
+
+</form>

@@ -1,0 +1,9 @@
+<div class="container">
+      <div class="d-flex justify-content-center btn-group" role="group" aria-label="Basic example">
+            <button (click)="activar('T')" type="button" class="btn btn-primary">Template Form</button>
+            <button (click)="activar('D')" type="button" class="btn btn-primary">Data Form</button>
+          </div>
+      <app-template *ngIf="mostrar=='T'"></app-template>
+<hr/>
+      <app-data *ngIf="mostrar=='D'"></app-data>
+</div>
