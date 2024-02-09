@@ -19,10 +19,8 @@ export class FormularioComponent {
     categoria:"no tiene categ"
   }
   submit(f:NgForm){
-    if (this.producto.nombre) {
-      this.productos.push({...this.producto});  
-    }
-    console.log(f.value);
+    this._productoService.add(this.producto)
+   
   }
   constructor(private _productoService:ProductosService){
     this.productos=_productoService.getAll();

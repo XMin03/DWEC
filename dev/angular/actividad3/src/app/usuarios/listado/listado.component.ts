@@ -14,14 +14,13 @@ export class ListadoComponent {
   usuarios: Usuarios[];
   constructor(private _usuariosService:UsuariosService){
     this.usuarios=_usuariosService.getAll();
+    this._usuariosService.usuarioChanged.subscribe(()=>{
+      this.usuarios=_usuariosService.getAll();
+    })
   }
   message:string="";
   eliminar(nombre:string){
-    let indice = this.usuarios.findIndex(u => u.nombre === nombre);
-    this.message="Usuario "+ (indice !== -1?"eliminado":"no encontrado")+": "+nombre;
-    while (indice!=-1) {
-      this._usuariosService.delete(indice);
-      indice = this.usuarios.findIndex(u => u.nombre === nombre);
-    }
+    let b=this._usuariosService.delete(nombre);
+    this.message="Usuario "+ (b?"eliminado":"no encontrado")+": "+nombre;
   }
 }

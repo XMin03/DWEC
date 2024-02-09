@@ -1,17 +1,34 @@
-<form class="col-6" (ngSubmit)="submit(tFormulario)" #tFormulario="ngForm">
+<form (ngSubmit)="submit(tFormulario)" #tFormulario="ngForm">
     <div class="row bg-primary">
         <div class="col text-center">FORMULARIO</div>
     </div>
     <div class="form-group">
-      <input #nombre="ngModel" type="text"  required
-      minlength="4" class="form-control" name="nombre" id="" placeholder="Nombre" [(ngModel)]=producto.nombre>
-      <div *ngIf="nombre.errors?.['required']" class="col-8 warning bg-warning">
-        Nombre requerido.</div>
-       <div *ngIf="nombre.errors?.['minlength']" class="col-8 warning bg-warning">
-        Longitud mínima 4 caracteres.</div>
+        <input #nombre="ngModel" class="form-control" type="text" name="nombre" placeholder="Nombre" required
+            minlength="4" [(ngModel)]=producto.nombre [ngClass]="{'is-invalid': !nombre.valid}">
+        <div *ngIf="nombre.errors?.['required']" class="col-8 warning bg-warning">
+            Nombre requerido.
+        </div>
+        <div *ngIf="nombre.errors?.['minlength']" class="col-8 warning bg-warning">
+            Longitud mínima 4 caracteres.
+        </div>
     </div>
     <div class="form-group">
-        <input type="text" class="form-control" name="num" id="" placeholder="0" [(ngModel)]=producto.num>
+        <input #num="ngModel" id="" class="form-control" type="text" name="num" placeholder="0" required pattern="^[0-9]+$"
+            [(ngModel)]=producto.num [ngClass]="{'is-invalid': !num.valid}">
+        <div *ngIf="num.errors?.['required']" class="col-8 warning bg-warning">
+            Edad requerida.
+        </div>
+        <div *ngIf="num.errors?.['pattern']" class="col-8 warning bg-warning">
+            Solo números.
+        </div>
+    </div>
+    <div class="form-group">
+        <input #categoria="ngModel" id="" class="form-control"  type="text"
+            placeholder="Nombre" required minlength="4" [(ngModel)]=producto.categoria [ngClass]="{'is-invalid': !categoria.valid}">
+        <div *ngIf="categoria.errors?.['required']" class="col-8 warning bg-warning">
+            Categoria requerida.</div>
+        <div *ngIf="categoria.errors?.['minlength']" class="col-8 warning bg-warning">
+            Longitud mínima 4 caracteres.</div>
     </div>
     <button type="submit" class="btn btn-primary" [disabled]="!tFormulario.valid">Enviar</button>
 </form>

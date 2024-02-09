@@ -14,14 +14,13 @@ export class ListadoComponent {
   productos: Productos[];
   constructor(private _productoService:ProductosService){
     this.productos=_productoService.getAll();
+    this._productoService.productoChanged.subscribe(()=>{
+      this.productos=_productoService.getAll();
+    })
   }
   message:string="";
   eliminar(nombre:string){
-    let indice = this.productos.findIndex(p => p.nombre === nombre);
-    this.message="Producto "+ (indice !== -1?"eliminado":"no encontrado")+": "+nombre;
-    while (indice!=-1) {
-      this._productoService.delete(indice);
-      indice = this.productos.findIndex(p => p.nombre === nombre);
-    }
+    let b=this._productoService.delete(nombre);
+    this.message="Producto "+ (b?"eliminado":"no encontrado")+": "+nombre;
   }
 }

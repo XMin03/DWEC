@@ -1,10 +1,12 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable, Output } from '@angular/core';
 import { Usuarios } from '../usuarios/interface.usuarios';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuariosService {
+  @Output() usuarioChanged:EventEmitter<null>
+
   private _usuarios: Usuarios[] = [
     {
       nombre: "Manuel",
@@ -17,9 +19,18 @@ export class UsuariosService {
       profesion: "no tiene profesión"
     }
   ]
-  constructor() { }
-  getAll():Usuarios[]{return this._usuarios}
-  delete(index:number){
-    this._usuarios.splice(index, 1);
+  constructor() { 
+    this.usuarioChanged=new EventEmitter;
+
+  }
+  getAll():Usuarios[]{return this._usuarios}  
+  add(u:Usuarios){
+    this._usuarios.push({...u});
+  }
+  delete(name:string){
+    let indice = this._usuarios.findIndex(u => u.nombre === name);
+    this._usuarios=this._usuarios.filter(u=>u.nombre!=name);
+    this.usuarioChanged.emit();
+    return indice!=-1;
   }
 }

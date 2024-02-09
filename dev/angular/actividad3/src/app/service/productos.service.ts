@@ -1,10 +1,11 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable, Output } from '@angular/core';
 import { Productos } from '../productos/interface.productos';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductosService {
+  @Output() productoChanged:EventEmitter<null>
   private _productos: Productos[] = [
     {
       nombre: "laca",
@@ -32,9 +33,17 @@ export class ProductosService {
       categoria: "no tiene categ"
     }
   ]
-  constructor() { }
+  constructor() { 
+    this.productoChanged=new EventEmitter;
+  }
   getAll():Productos[]{return this._productos}
-  delete(index:number){
-    this._productos.splice(index, 1);
+  add(p:Productos){
+    this._productos.push({...p});  
+  }
+  delete(name:string){
+    let indice = this._productos.findIndex(p => p.nombre === name);
+    this._productos=this._productos.filter((p)=>p.nombre!=name);
+    this.productoChanged.emit();
+    return indice!=-1;
   }
 }

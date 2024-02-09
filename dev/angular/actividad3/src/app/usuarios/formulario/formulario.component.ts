@@ -13,25 +13,19 @@ import { CommonModule } from '@angular/common';
 })
 export class FormularioComponent {
   dFormulario:FormGroup;
-  usuarios: Usuarios[];
   usuario:Usuarios={
     nombre:"",
     edad:0,
     profesion:"no tiene profesión"
   }
   submit(){
-    //no funciona
-    this.dFormulario.setValue(this.usuario)
-    if (this.usuario.nombre) {
-      this.usuarios.push({...this.usuario});  
-    }
+    this._usuarioService.add(this.usuario);
   }
   constructor(private _usuarioService:UsuariosService){
-    this.usuarios=_usuarioService.getAll();
     this.dFormulario=new FormGroup({
       "nombre":new FormControl("",[Validators.required,Validators.minLength(3)]),
       "edad":new FormControl("",[Validators.required,Validators.min(0),Validators.pattern("^[0-9]+$")]),
-      "profesion":new FormControl("no tiene profesión")
+      "profesion":new FormControl("no tiene profesión",[Validators.required,Validators.minLength(3)])
     });
   }
 }
