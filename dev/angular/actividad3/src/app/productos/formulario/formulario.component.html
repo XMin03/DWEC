@@ -24,7 +24,7 @@
     </div>
     <div class="form-group">
         <input #categoria="ngModel" id="" class="form-control"  type="text"
-            placeholder="Nombre" required minlength="4" [(ngModel)]=producto.categoria [ngClass]="{'is-invalid': !categoria.valid}">
+            placeholder="Categoria" required minlength="4" [(ngModel)]=producto.categoria name="categoria" [ngClass]="{'is-invalid': !categoria.valid}">
         <div *ngIf="categoria.errors?.['required']" class="col-8 warning bg-warning">
             Categoria requerida.</div>
         <div *ngIf="categoria.errors?.['minlength']" class="col-8 warning bg-warning">
