@@ -1,0 +1,26 @@
+<div class="container-fluid">
+  <div class="row bg-info-subtle">
+    <div class="col-9">
+      <div class="row">
+        <div class="col" *ngIf="botonesPulsados.length==0">
+          <p>No se ha pulsado ningún botón</p>
+        </div>
+        <div class="col" *ngIf="botonesPulsados.length>0">
+          <div>Secuencia de botones pulsados: [{{botonesPulsados.toString()}}]
+          </div>
+          <div>Suma de valores: {{suma}}</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-3">
+      <button type="button" (click)="reset()" class="btn btn-primary">Reset</button>
+    </div>
+  </div>
+  <div class="row">
+    <app-botones
+      *ngFor="let boton of botones"
+      class="col-3" [boton]="boton"
+      (botonTarjetaPulsado)="pulsar($event)"
+    ></app-botones>
+  </div>
+</div>
