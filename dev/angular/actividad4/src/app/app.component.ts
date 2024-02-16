@@ -32,7 +32,7 @@ export class AppComponent {
   reset(){
     this.botonesPulsados= [];
     this.suma=0
-
+    this.deshabilitar.emit();
   }
   pulsar(boton:Boton){
     this.botonesPulsados.push(boton.texto);
