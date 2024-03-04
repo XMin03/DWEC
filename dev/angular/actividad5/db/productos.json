@@ -3,14 +3,14 @@
     {
       "id": 1,
       "nombre": "Bolígrafo",
-      "precio": 1,
+      "precio": 2.5,
       "categoria": 3,
       "inventario": 100
     },
     {
       "id": 2,
       "nombre": "Martillo",
-      "precio": 99,
+      "precio": 5,
       "categoria": 1,
       "inventario": 15
     },

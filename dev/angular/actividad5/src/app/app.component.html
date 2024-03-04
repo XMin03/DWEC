@@ -63,7 +63,7 @@
         <div class="col-4">
             <h1>Categorías</h1>
             <p *ngFor="let c of categorias">
-                {{ c.nombre }} => {{ c | json}}
+                {{ c.nombre }}, {{ c | json}}
                 <button class="btn btn-primary"
                 (click)="updateCategoria(c,'hola')">
                 Modificar a hola
@@ -77,7 +77,7 @@
         <div class="col-4">
             <h1>Usuarios</h1>
             <p *ngFor="let u of usuarios">
-                {{ u.nombre }} => {{ u | json}}
+                {{ u.nombre }}, {{ u | json}}
                 <button class="btn btn-primary"
                 (click)="updateUsuario(u,'hola')">
                 Modificar a hola
