@@ -27,31 +27,13 @@
       "precio": 5,
       "categoria": 3,
       "inventario": 50
-    },
-    {
-      "id": 99,
-      "nombre": "ejemplo",
-      "precio": 88.88,
-      "categoria": 1
     }
   ],
   "categorias": [
-    {
-      "id": 0,
-      "nombre": "Sin categoría"
-    },
-    {
-      "id": 1,
-      "nombre": "Ferretería"
-    },
-    {
-      "id": 2,
-      "nombre": "Mobiliario"
-    },
-    {
-      "id": 3,
-      "nombre": "Papelería"
-    }
+    { "id": 0, "nombre": "Sin categoría"},
+    { "id": 1, "nombre": "Ferretería"},
+    { "id": 2, "nombre": "Mobiliario"},
+    { "id": 3, "nombre": "Papelería"}
   ],
   "usuarios": [
     {
@@ -83,6 +65,6 @@
       "nombre": "Miguel",
       "resultado": [],
       "passwd": "passwd"
-    }
+    }  
   ]
 }
