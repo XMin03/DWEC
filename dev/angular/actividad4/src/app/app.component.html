@@ -19,7 +19,7 @@
   <div class="row">
     <app-botones
       *ngFor="let boton of botones"
-      class="col-3" [boton]="boton"
+      class="col-3" [boton]="boton" [habilitar]="habilitar"
       (botonTarjetaPulsado)="pulsar($event)"
     ></app-botones>
   </div>

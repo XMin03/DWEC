@@ -13,19 +13,22 @@ export class BotonesComponent implements OnInit {
   disabled=false;
   //Variables de instancia de comunicación con el padre
   @Input() boton:Boton={id:0,texto:'',valor:0};
+  @Input() habilitar:EventEmitter<any>=new EventEmitter;
   @Output() botonTarjetaPulsado:EventEmitter<Boton>;
   //Variables propias del componente
   
-  constructor(app:AppComponent){
+  constructor(){
     this.botonTarjetaPulsado=new EventEmitter;
-      app.deshabilitar.subscribe(
+     
+  }
+
+  ngOnInit(): void {
+     this.habilitar.subscribe(
         ()=>{this.disabled=false;}
       )
   }
 
-  ngOnInit(): void {  }
-
-  botonPulsado(boton:HTMLButtonElement) {
+  botonPulsado() {
     this.botonTarjetaPulsado.emit(this.boton);
     this.disabled=true;
   }

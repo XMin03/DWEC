@@ -12,7 +12,7 @@ import { Boton } from './components/boton.interface';
 })
 export class AppComponent {
   //Variables de instancia de comunicación con los hijos
-  @Output() deshabilitar:EventEmitter<null>
+  habilitar:EventEmitter<any>= new EventEmitter();
   //Variables propias del componente
   botones: Boton[] = [
     { id: 1, texto: 'Rojo', valor: 3 },
@@ -26,13 +26,13 @@ export class AppComponent {
   botonesPulsados: string[] = [];
   suma=0
   constructor() {
-    this.deshabilitar=new EventEmitter;
   }
+  
   //Métodos de instancia
   reset(){
     this.botonesPulsados= [];
     this.suma=0
-    this.deshabilitar.emit();
+    this.habilitar.emit();
   }
   pulsar(boton:Boton){
     this.botonesPulsados.push(boton.texto);
