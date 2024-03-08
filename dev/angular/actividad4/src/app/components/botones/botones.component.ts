@@ -19,13 +19,12 @@ export class BotonesComponent implements OnInit {
   
   constructor(){
     this.botonTarjetaPulsado=new EventEmitter;
-     
   }
 
   ngOnInit(): void {
-     this.habilitar.subscribe(
-        ()=>{this.disabled=false;}
-      )
+    this.habilitar.subscribe(
+      ()=>{this.disabled=false;}
+    )
   }
 
   botonPulsado() {
