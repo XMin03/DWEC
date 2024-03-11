@@ -1,0 +1,41 @@
+<form class="row g-3 needs-validation" (ngSubmit)="enviar(tFormulario)" #tFormulario="ngForm" novalidate>
+
+  <div class="col-md-4">
+      <label for="Id" class="form-label">Id</label>
+      <div class="input-group">
+        <input #id="ngModel"
+              type="text" class="form-control" id="Id" [ngModel]="usuario.id" name="id" readonly required>
+        <div *ngIf="!id.valid" class="etiqueta">
+          El número de identificación es obligatorio.
+        </div>
+      </div>
+  </div>
+<div class="col-md-4">
+  <label for="Nombre" class="form-label">Nombre de usuario</label>
+  <div class="input-group">
+    <input  #nombre="ngModel" name="nombre"
+          type="text" class="form-control" id="Nombre" [(ngModel)]="usuario.nombre" pattern="^[a-zA-Z0-9]+$" required>
+    <div *ngIf="!nombre.valid" class="etiqueta">
+      El nombre de usuario es obligatorio y debe tener solamente minúsculas y sin espacios.
+    </div>
+  </div>
+</div>
+<div class="col-md-3">
+  <label for="Equipo" class="form-label">Equipo</label>
+  <select name="equipo" #equipo="ngModel"
+          class="form-select" id="Equipo"
+          required [(ngModel)]="usuario.equipo">
+    <option *ngFor="let e of equipos" value="{{e.id}}" selected="{{usuario.equipo==e.id?'selected':''}}">{{e.nombre}}</option>
+  </select>
+  <div *ngIf="!equipo.valid" class="etiqueta">
+    Seleccione un equipo.
+  </div>
+</div>
+
+<div class="col-2">
+  <button class="btn btn-primary" disabled="{{!tFormulario.valid?'disabled':''}}" type="submit">Guardar</button>
+</div>
+<div class="col-2">
+  <button class="btn btn-warning" (click)="cancelar()" type="button">Cancelar</button>
+</div>
+</form>

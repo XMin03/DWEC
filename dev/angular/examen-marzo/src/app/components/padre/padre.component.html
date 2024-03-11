@@ -1,0 +1,19 @@
+<h1>Hay que pulsar todos los botones</h1>
+
+<div class="mt-2 mb-2 row align-items-center">
+    <button class="col btn btn-primary" (click)="useEstaciones()">Trabajar con estaciones</button>
+    <button class="col btn btn-primary" (click)="useDias()">Trabajar con días</button>
+
+    <button class="col btn btn-danger" (click)="reset()">Reset botones</button>
+</div>
+
+<div class="bg-warning" *ngIf="botones_pulsados.length!=botones_por_pulsar.length">
+    Botones pulsados: [{{botones_pulsados.toString()}}]
+</div>
+<div class="bg-warning" *ngIf="botones_pulsados.length==botones_por_pulsar.length">
+    <h2>TODOS LOS BOTONES PULSADOS</h2>
+</div>
+
+<div class="row mt-2 mx-4" *ngFor="let string of botones_por_pulsar,let i=index">
+<app-hijo  [texto]="string" [indice]="i" [evResetHijo]="habilitar" (evBotonPulsado)="suma($event)">COMPONENTES HIJOS</app-hijo>
+</div>
