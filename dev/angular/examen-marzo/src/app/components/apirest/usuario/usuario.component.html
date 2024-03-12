@@ -14,7 +14,7 @@
   <label for="Nombre" class="form-label">Nombre de usuario</label>
   <div class="input-group">
     <input  #nombre="ngModel" name="nombre"
-          type="text" class="form-control" id="Nombre" [(ngModel)]="usuario.nombre" pattern="^[a-zA-Z0-9]+$" required>
+          type="text" class="form-control" id="Nombre" [(ngModel)]="usuario.nombre" pattern="^[a-z]+$" required>
     <div *ngIf="!nombre.valid" class="etiqueta">
       El nombre de usuario es obligatorio y debe tener solamente minúsculas y sin espacios.
     </div>
